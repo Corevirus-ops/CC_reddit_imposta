@@ -4,14 +4,14 @@ import './index.css';
 import App from './app/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from "react-router";
-import store from './app/store';
+import {store} from './app/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App getState={store.getState} dispatch={store.dispatch} />} />
+      <Route path="*" element={<App getState={store.getState} dispatch={store.dispatch} />} />
     </Routes>
   </BrowserRouter>
   </React.StrictMode>
