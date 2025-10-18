@@ -3,17 +3,19 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './app/App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter} from "react-router";
 import {store} from './app/store';
+import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
   <BrowserRouter>
-    <Routes>
-      <Route path="*" element={<App getState={store.getState} dispatch={store.dispatch} />} />
-    </Routes>
+    <App getState={store.getState} dispatch={store.dispatch} />
+
   </BrowserRouter>
+  </Provider>
   </React.StrictMode>
 );
 

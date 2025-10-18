@@ -1,0 +1,167 @@
+.PageHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid rgb(82, 82, 82);
+    box-sizing: border-box;
+    position: sticky; 
+    top: 0; 
+    background-color: #fff; 
+    z-index: 1; 
+    padding: 10px 20px; 
+    width: 100%; 
+}
+
+
+.PageLogo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: rgb(255, 69, 0);
+    font-size: 0; 
+}
+
+.PageLogo a {
+    text-decoration: none;
+}
+
+.PageLogo img {
+    width: 10%; 
+    height: auto;
+    min-width: 30px;
+    max-width: 100px; 
+    object-fit: contain;
+}
+
+.PageLogo img:hover {
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
+}
+
+.PageLogo figcaption {
+    font-size: 16px;
+    margin-left: 10px; 
+}
+
+.PageLogo figcaption:hover {
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.496);
+}
+
+
+.topNav {
+    display: flex;
+    align-items: center;
+}
+
+.topNav ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    list-style: none; 
+    margin: 0;
+    padding: 0;
+    gap: 25px; 
+}
+
+.topNav li {
+    display: flex;
+    padding: 5px;
+}
+
+.userIcon img {
+     width: 10%; 
+    height: auto;
+    min-width: 30px;
+    max-width: 100px; 
+    object-fit: contain;   
+}
+
+.userIcon {
+    display: flex;
+    flex-wrap: wrap;
+     width: 10%; 
+    height: auto;
+    min-width: 30px;
+    max-width: 100px; 
+    object-fit: contain;  
+    border-radius: 5%; 
+}
+
+.userIcon .subMenu {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 0.8rem;
+    top: 100%;
+    right: 1%;
+    background-color: #fff;
+    border: 2px solid black;
+    border-radius: 5%;
+}
+
+
+.topBarSearchBar {
+    display: flex;
+    margin: 0 10px;
+}
+
+.topBarSearchBar input {
+    border-radius: 20px; 
+    border: 1px solid rgb(255, 69, 0);
+    justify-content: stretch;
+    text-align: center;
+    padding: 8px 12px; 
+    width: 200px; 
+    transition: border-color 0.3s, box-shadow 0.3s; 
+}
+
+.topBarSearchBar input[type="text"]:focus {
+    outline: none;
+    border-color: rgb(255, 69, 0);
+    box-shadow: 0 0 5px rgba(255, 69, 2, 0.695);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .PageHeader {
+        flex-direction: column; 
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .PageLogo {
+        margin-bottom: 10px; 
+    }
+
+    .PageLogo img {
+        width: 15%; 
+        max-width: 80px;
+    }
+
+    .topNav ul {
+        flex-direction: column; 
+        width: 100%;
+        gap: 10px;
+    }
+
+    .topNav li {
+        width: 100%;
+        justify-content: center; 
+    }
+
+    .topBarSearchBar input {
+        width: 100%; 
+        max-width: 300px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .PageLogo figcaption {
+        font-size: 14px; 
+    }
+
+    .topBarSearchBar input {
+        padding: 6px 10px; 
+    }
+}
