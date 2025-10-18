@@ -13,6 +13,7 @@ A Reddit Like Clone for CodeAcademy Full Stack Front-End Portfolio Project using
 * redux react-redux
 * @reduxjs/toolkit 
 * react-router-dom
+* fontAwesome react and Core
 
 ## Project Description 
 **placeholder**
