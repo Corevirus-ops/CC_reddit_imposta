@@ -5,26 +5,57 @@ import {getPost} from '../Auth/getPost';
 import { useEffect, useState} from 'react';
 
 
-export default function HomeContent() {
-    const state = useSelector(getUser);
+
+export default function HomeContent({loading}) {
+    const [gatherPost, setGatherPost] = useState(false);
     const [postData, setPostData] = useState(null);
-console.log(postData)
+    const state = useSelector(getUser);
 
-        useEffect(() => {
-            if (state.isLoggedIn) {
-           const Data =  getPost(state.accessToken);
-           setPostData(Data)
 
-        }
 
-        }, [state.isLoggedIn, state.accessToken])
+  useEffect(() => {
+
+
+      const timer = setTimeout(() => {
+
+    if (state.isLoggedIn) {
+        getPost(state.accessToken)
+        setGatherPost(true);
+    } else if (!state.isLoggedIn) {
+        setGatherPost(false);
+        setPostData(null);
+    }
+
+      }, 1500); 
+    console.log(postData)
+    
+      return () => clearTimeout(timer);
+    
+
+
+  }, [state.isLoggedIn, state.accessToken, gatherPost, postData])
+
+  useEffect(() => {
+
+    if (gatherPost) {
+         let data = localStorage.getItem('postData');
+         if (data) {
+            data = JSON.parse(data);
+            setPostData(data);
+         console.log(data);
+         }
+
+    }
+
+  }, [gatherPost])
+
 
 
     return (
   
         <section className="content-display">
 
-{   !postData ?   
+{   loading ?   
     
     <>     
     <div className='content-display-header'>
@@ -38,6 +69,7 @@ console.log(postData)
             </div>
             </>  :
             <>
+            <h1>Yee conts here innit</h1>
             
             </>
             }

@@ -20,7 +20,8 @@ export async function getPost(accessToken) {
     }
     
     const bodyPost = await response.json();
-    return bodyPost.data.children;
+   // console.log("getPost: ", bodyPost.data.children)
+  localStorage.setItem('postData', JSON.stringify(bodyPost.data.children));
 
 
     

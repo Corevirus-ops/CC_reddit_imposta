@@ -26,18 +26,25 @@ useEffect(() => {
 }, [code, state.isLoggedIn])
 
 useEffect(() => {
-  if (accessToken && !state.isLoggedIn) {
-     const userName = localStorage.getItem('userDataName');
-     const userImage = localStorage.getItem('userDataImage');
-     if (userName) {
+if (!state.isLoggedIn) {
+  const timer = setTimeout(() => {
+    const userName = localStorage.getItem('userDataName');
+    const userImage = localStorage.getItem('userDataImage');
+    if (userName && !state.isLoggedIn) {
       dispatch(logIn({
         userName: userName,
         image: userImage,
         token: accessToken
-      }))
-     }
-  }
-}, [accessToken, state.isLoggedIn, dispatch])
+      }));
+      navigate('/')
+    }
+  }, 500); 
+
+
+  return () => clearTimeout(timer);
+
+}
+}, [accessToken, state.isLoggedIn, dispatch, navigate])
 
 
 
@@ -49,9 +56,10 @@ getUserKey();
   function handleLogout() {
       dispatch(logOut());
       setSubMenu(false); 
-            localStorage.setItem('userDataName', '');
-          localStorage.setItem('userDataImage', '');
-            localStorage.setItem('access_token', '');
+localStorage.removeItem('userDataName');
+  localStorage.removeItem('userDataImage');
+  localStorage.removeItem('access_token');
+  localStorage.removeItem('postData');
             navigate('/')
   }
 return (
