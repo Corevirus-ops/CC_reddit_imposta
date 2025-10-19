@@ -1,28 +1,32 @@
 import {createSlice} from '@reduxjs/toolkit';
 
+
+
 const userSlice = createSlice({
     name: 'user',
     initialState: {
         user: {
             isLoggedIn: false,
             userName: '',
-            userIcon: ''
-            
+            userIcon: '',
+            accessToken: ''
         }
     },
     reducers: {
         logIn: (state, action) => {
             state.user = {
                 isLoggedIn: true,
-                userName: action.payload,
-                userIcon: 'loggedInUser.png'
+                userName: action.payload.userName,
+                userIcon: action.payload.image,
+                accessToken: action.payload.token, 
             }
         },
         logOut: (state) => {
             state.user = {
                 isLoggedIn: false,
                 userName: '',
-                userIcon: ''
+                userIcon: '',
+                accessToken: '',
             }
         }
     }

@@ -1,35 +1,61 @@
 
+    
+    import { useEffect } from 'react';
     import { useDispatch, useSelector } from 'react-redux';
 import { getUser, logIn, logOut } from '../Auth/userSlice';
 import { useState } from 'react';
+import {getUserKey, getToken} from '../Auth/Auth';
 
 export default function TopBarNavUser() {
         const [subMenu, setSubMenu] = useState(false);
-    const [userInput, setUserInput] = useState('');
     const state = useSelector(getUser)
     const dispatch = useDispatch();
 
+  const urlParams = new URLSearchParams(window.location.search);
+let code = urlParams.get('code');
+
+let accessToken = localStorage.getItem('access_token');
+
+
+useEffect(() => {
+  if (code && !state.isLoggedIn) {
+  getToken(code);
+  }
+}, [code])
+
+useEffect(() => {
+  if (accessToken && !state.isLoggedIn) {
+     const userName = localStorage.getItem('userDataName');
+     const userImage = localStorage.getItem('userDataImage');
+     if (userName) {
+      dispatch(logIn({
+        userName: userName,
+        image: userImage,
+        token: accessToken
+      }))
+     }
+  }
+}, [accessToken])
+
+
+
     function handleLogin() {
-    if (userInput.trim()) { 
-      dispatch(logIn(userInput));
-      setUserInput(''); 
-      setSubMenu(false); 
-    } else {
-      alert('Please enter a valid username'); 
-    }
+getUserKey();
+
   };
 
   function handleLogout() {
       dispatch(logOut());
-      setUserInput(''); 
       setSubMenu(false); 
+            localStorage.setItem('userDataName', '');
+          localStorage.setItem('userDataImage', '');
+            localStorage.setItem('access_token', '');
   }
 return (
                     <li className='userIcon'>
                     <button onClick={() => setSubMenu(!subMenu)}><img src={state.isLoggedIn ? state.userIcon : 'freeUser.png'} alt='userLogo'/></button>
                     { subMenu && !state.isLoggedIn &&
                         (<>
-                        <input className='subMenu' value={userInput} onChange={(e) => setUserInput(e.target.value)} />
                         <button className='subMenu' onClick={handleLogin}>Log In</button>
                         </>)
                     }
@@ -39,7 +65,7 @@ return (
                         <div className='subMenu'>
                         <button>View Profile</button>
                         <p>{state.userName}</p>
-                        <button className='subMenu' onClick={handleLogout}>Log Out</button>
+                        <button onClick={handleLogout}>Log Out</button>
                         </div>
 
                     )}

@@ -94,9 +94,19 @@
     border-radius: 5%; 
 }
 
-.userIcon:hover {
+.userIcon button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.userIcon img:hover {
     filter: drop-shadow(5px 5px 10px rgba(255, 68, 0, 0.531));
     cursor: pointer;
+}
+
+.userIcon img {
+    border-radius: 100%;
 }
 
 .userIcon .subMenu {
@@ -108,9 +118,13 @@
     font-size: 0.8rem;
     top: 100%;
     right: 1%;
-    background-color: #fff;
+    background-color: #c0c0c0;
     border: 2px solid black;
     border-radius: 5%;
+}
+
+.subMenu p {
+    padding: 5px;
 }
 
 
