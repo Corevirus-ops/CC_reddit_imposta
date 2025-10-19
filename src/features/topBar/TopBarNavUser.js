@@ -5,11 +5,13 @@
 import { getUser, logIn, logOut } from '../Auth/userSlice';
 import { useState } from 'react';
 import {getUserKey, getToken} from '../Auth/Auth';
+import {useNavigate} from 'react-router-dom';
 
 export default function TopBarNavUser() {
         const [subMenu, setSubMenu] = useState(false);
     const state = useSelector(getUser)
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
   const urlParams = new URLSearchParams(window.location.search);
 let code = urlParams.get('code');
@@ -21,7 +23,7 @@ useEffect(() => {
   if (code && !state.isLoggedIn) {
   getToken(code);
   }
-}, [code])
+}, [code, state.isLoggedIn])
 
 useEffect(() => {
   if (accessToken && !state.isLoggedIn) {
@@ -35,7 +37,7 @@ useEffect(() => {
       }))
      }
   }
-}, [accessToken])
+}, [accessToken, state.isLoggedIn, dispatch])
 
 
 
@@ -50,6 +52,7 @@ getUserKey();
             localStorage.setItem('userDataName', '');
           localStorage.setItem('userDataImage', '');
             localStorage.setItem('access_token', '');
+            navigate('/')
   }
 return (
                     <li className='userIcon'>

@@ -1,5 +1,4 @@
 
-import { useDispatch, useSelector } from "react-redux";
 
 
 const generateRandomString = (length) => {
@@ -18,7 +17,7 @@ const authHeader = `Basic ${btoa(`${clientId}:${clientSecret}`)}`;
 
 
 export function getUserKey() {
- const state = localStorage.setItem("URIstate", randomString);
+
     const params =  {
     response_type: 'code',
       client_id: clientId,
@@ -34,9 +33,6 @@ window.location.href = authUrl.toString();
 }
 
 export const getToken = async (code) => {
-
-  // stored in the previous step
-   const state = localStorage.getItem("URIstate");
 
   const url = "https://www.reddit.com/api/v1/access_token";
   const payload = {
