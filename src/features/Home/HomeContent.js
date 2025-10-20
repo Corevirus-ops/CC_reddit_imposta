@@ -12,48 +12,71 @@ import {faArrowUp, faArrowDown} from '@fortawesome/free-solid-svg-icons';
 export default function HomeContent({loading}) {
     const [gatherPost, setGatherPost] = useState(false);
     const [postData, setPostData] = useState(null);
+    const [category, setCategory] = useState('');
     const state = useSelector(getUser);
-
 
 
 
 useEffect(() => {
   if (state.isLoggedIn && !gatherPost) {
-    getPost(state.accessToken)
+    getPost(state.accessToken, category)
       .then((data) => {
         console.log(data)
         setPostData(data);
+        localStorage.setItem('postData', data);
         setGatherPost(true);
       })
       .catch((error) => {
         console.error("Error fetching post:", error);
-        setGatherPost(false);
+        let cache = localStorage.getItem('postData');
+        setPostData(cache);
+        alert('Trouble Loading Content')
+       // setGatherPost(false);
       });
   } else if (!state.isLoggedIn) {
     setGatherPost(false);
     setPostData(null);
   }
-}, [state.isLoggedIn, state.accessToken, gatherPost, postData]);
+}, [state.isLoggedIn, state.accessToken, gatherPost, postData, category]);
 
     
 function openUser(target) {
     window.open(`https://www.reddit.com/${target}`, "_blank");
 }
 
+function changeCategory(type) {
+  setCategory(type);
+  setGatherPost(false);
+}
+
 
 
     return (
   
-        <section className="content-display">
+        <section className="redditScreen">
 
 {   loading ?   
     
     <>     
             <h1>Waiting for user to LogIn</h1>
             </>  :
-                     <>    
+                     <>   <div className="redditScreen">
+      <label htmlFor="myDropdown">Choose a category:</label>
+      <select
+        id="myDropdown"
+        name="selectedOption"
+        onChange={(e) => changeCategory(e.target.value)}
+        value={category}
+      >
+        <option value="popular">Popular</option>
+        <option value="default">Default</option>
+        <option value="new">New</option>
+      </select>
+    </div>
+
                      { postData ? postData.map((item, index) => (
                         <div key={index} className='redditScreen'>
+
                             <div className='redditBox'>
                                 <h3 className='displayName'>
                                     <img onClick={() => openUser(item.data.display_name_prefixed)} className='displayLogo' src={item.data.icon_img ? item.data.icon_img : 'freeUser.png'} alt={`logo for ${item.data.display_name_prefixed}`}/> 

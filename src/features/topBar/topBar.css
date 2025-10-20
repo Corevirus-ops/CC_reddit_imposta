@@ -161,6 +161,19 @@
     box-shadow: 0 0 5px rgba(255, 69, 2, 0.695);
 }
 
+.searchResults {
+    display: flex;
+    position: fixed;
+top: 10%;
+left: 20%;
+    background-color: #fff;
+    border: 2px solid lightgrey;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+}
+
 
 @media (max-width: 768px) {
     .PageHeader {
