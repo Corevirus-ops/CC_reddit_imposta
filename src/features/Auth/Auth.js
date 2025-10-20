@@ -12,12 +12,11 @@ const clientId = 'jmLveRbd0_5HhFr0hfFu0A';
 const scope = 'identity history mysubreddits read save submit vote wikiedit wikiread';
 const authUrl = new URL("https://www.reddit.com/api/v1/authorize")
 const clientSecret = 'eXmDY5ZFSe2FGLGsGPTdmQ2gs6fJIQ'; 
-const randomString = generateRandomString(16);
 const authHeader = `Basic ${btoa(`${clientId}:${clientSecret}`)}`;
 
 
 export function getUserKey() {
-
+const randomString = generateRandomString(16);
     const params =  {
     response_type: 'code',
       client_id: clientId,

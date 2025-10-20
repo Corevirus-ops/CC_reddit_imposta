@@ -3,6 +3,9 @@ import {useSelector} from 'react-redux';
 import './home.css';
 import {getPost} from '../Auth/getPost';
 import { useEffect, useState} from 'react';
+import HomeContents from './HomeContents';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faArrowUp, faArrowDown} from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -13,41 +16,27 @@ export default function HomeContent({loading}) {
 
 
 
-  useEffect(() => {
 
-
-      const timer = setTimeout(() => {
-
-    if (state.isLoggedIn) {
-        getPost(state.accessToken)
+useEffect(() => {
+  if (state.isLoggedIn && !gatherPost) {
+    getPost(state.accessToken)
+      .then((data) => {
+        console.log(data)
+        setPostData(data);
         setGatherPost(true);
-    } else if (!state.isLoggedIn) {
+      })
+      .catch((error) => {
+        console.error("Error fetching post:", error);
         setGatherPost(false);
-        setPostData(null);
-    }
+      });
+  } else if (!state.isLoggedIn) {
+    setGatherPost(false);
+    setPostData(null);
+  }
+}, [state.isLoggedIn, state.accessToken, gatherPost, postData]);
 
-      }, 1500); 
-    console.log(postData)
     
-      return () => clearTimeout(timer);
-    
 
-
-  }, [state.isLoggedIn, state.accessToken, gatherPost, postData])
-
-  useEffect(() => {
-
-    if (gatherPost) {
-         let data = localStorage.getItem('postData');
-         if (data) {
-            data = JSON.parse(data);
-            setPostData(data);
-         console.log(data);
-         }
-
-    }
-
-  }, [gatherPost])
 
 
 
@@ -58,21 +47,29 @@ export default function HomeContent({loading}) {
 {   loading ?   
     
     <>     
-    <div className='content-display-header'>
-                <h2>Title Not Found</h2>
-            </div>
-            <div className='content-display-body'>
-                <p>Body goes here</p>
-            </div>
-            <div className='content-display-footer'>
-                <p>Footer goes here</p>
-            </div>
+            <h1>Waiting for user to LogIn</h1>
             </>  :
-            <>
-            <h1>Yee conts here innit</h1>
-            
+                     <>    
+                     { postData ? postData.map((item, index) => (
+                        <div key={index} className='redditScreen'>
+                            <div className='redditBox'>
+                                <h3 className='displayName'>
+                                    <img className='displayLogo' src={item.data.icon_img ? item.data.icon_img : 'freeUser.png'} alt={`logo for ${item.data.display_name_prefixed}`}/> 
+                                    {item.data.display_name_prefixed}
+                                </h3>
+                            <p className='displayBody'>{item.data.public_description}</p>
+                            <HomeContents url={item.data.banner_background_image} alt={item.data.advertiser_category} />
+                            <div className='voteButtons'>
+                                <FontAwesomeIcon icon={faArrowUp} />
+                                <FontAwesomeIcon icon={faArrowDown} />
+
+                            </div>
+                            </div>
+                        </div>
+                     ))  : <></>} 
+
             </>
-            }
+                }
             
         </section>
 

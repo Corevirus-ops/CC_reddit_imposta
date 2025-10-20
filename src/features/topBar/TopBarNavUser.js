@@ -16,7 +16,7 @@ export default function TopBarNavUser() {
   const urlParams = new URLSearchParams(window.location.search);
 let code = urlParams.get('code');
 
-let accessToken = localStorage.getItem('access_token');
+
 
 
 useEffect(() => {
@@ -30,6 +30,7 @@ if (!state.isLoggedIn) {
   const timer = setTimeout(() => {
     const userName = localStorage.getItem('userDataName');
     const userImage = localStorage.getItem('userDataImage');
+    const accessToken = localStorage.getItem('access_token');
     if (userName && !state.isLoggedIn) {
       dispatch(logIn({
         userName: userName,
@@ -44,7 +45,7 @@ if (!state.isLoggedIn) {
   return () => clearTimeout(timer);
 
 }
-}, [accessToken, state.isLoggedIn, dispatch, navigate])
+}, [state.isLoggedIn, dispatch, navigate])
 
 
 
@@ -59,7 +60,6 @@ getUserKey();
 localStorage.removeItem('userDataName');
   localStorage.removeItem('userDataImage');
   localStorage.removeItem('access_token');
-  localStorage.removeItem('postData');
             navigate('/')
   }
 return (

@@ -1,7 +1,7 @@
 
 
 export async function getPost(accessToken) {
-      const url = 'https://oauth.reddit.com/subreddits/default';
+      const url = 'https://oauth.reddit.com/subreddits/popular';
   const payload = {
     method: 'GET',
     headers: {
@@ -21,8 +21,8 @@ export async function getPost(accessToken) {
     
     const bodyPost = await response.json();
    // console.log("getPost: ", bodyPost.data.children)
-  localStorage.setItem('postData', JSON.stringify(bodyPost.data.children));
-
+  //localStorage.setItem('postData', JSON.stringify(bodyPost.data.children));
+return bodyPost.data.children
 
     
 

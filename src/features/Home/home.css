@@ -1,10 +1,44 @@
 
-.content-display {
+.redditScreen {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 5px;
-    border: 2px solid black;
+    overflow: hidden;
+}
 
+.redditBox {
+        display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid rgb(112, 112, 112);
+    border-bottom: 1px solid rgb(112, 112, 112);
+    width: 60%;
+    margin: 1px 0px;
+}
+
+.redditBox p {
+    padding: 10px;
+
+}
+
+.displayName .displayLogo {
+    width: 25px;
+}
+
+.redditBox img{
+object-fit: contain;
+width: 100%;
+}
+
+.redditBox video{
+object-fit: contain;
+width: 100%;
+}
+
+.voteButtons {
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
 }
