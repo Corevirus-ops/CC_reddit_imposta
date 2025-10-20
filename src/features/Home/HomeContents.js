@@ -1,6 +1,8 @@
 
 
    export default function HomeContents({url, alt}) {
+
+
 const file = url.includes('.jpg' || '.png' || '.webp' || 'jpeg' || '.gif')
 const file2 = url.includes('.mov' || '.mp4')
 if (file) {
@@ -13,7 +15,7 @@ if (file) {
 
         return (
             <>
-            <img src={url} alt={alt} />
+            <img src={url} alt={alt}  />
             </>
         )
     }

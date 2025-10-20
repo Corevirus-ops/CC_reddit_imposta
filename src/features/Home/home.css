@@ -25,6 +25,7 @@
 
 .displayName .displayLogo {
     width: 25px;
+    cursor: pointer;
 }
 
 .redditBox img{

@@ -36,7 +36,9 @@ useEffect(() => {
 }, [state.isLoggedIn, state.accessToken, gatherPost, postData]);
 
     
-
+function openUser(target) {
+    window.open(`https://www.reddit.com/${target}`, "_blank");
+}
 
 
 
@@ -54,7 +56,7 @@ useEffect(() => {
                         <div key={index} className='redditScreen'>
                             <div className='redditBox'>
                                 <h3 className='displayName'>
-                                    <img className='displayLogo' src={item.data.icon_img ? item.data.icon_img : 'freeUser.png'} alt={`logo for ${item.data.display_name_prefixed}`}/> 
+                                    <img onClick={() => openUser(item.data.display_name_prefixed)} className='displayLogo' src={item.data.icon_img ? item.data.icon_img : 'freeUser.png'} alt={`logo for ${item.data.display_name_prefixed}`}/> 
                                     {item.data.display_name_prefixed}
                                 </h3>
                             <p className='displayBody'>{item.data.public_description}</p>
