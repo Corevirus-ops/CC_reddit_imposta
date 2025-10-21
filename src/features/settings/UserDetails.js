@@ -14,7 +14,8 @@ export default function UserDetails() {
         getUserInfo(state.accessToken)
         .then((data) => {
             setUserData([data])
-            console.log(data)
+        }).catch((error) => {
+            console.error("Error fetching User Details:", error);
         })
         } else if (!state.isLoggedIn) {
             setUserData([])

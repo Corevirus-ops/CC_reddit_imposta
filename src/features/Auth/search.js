@@ -1,40 +1,40 @@
+export default async function searchReddit(accessToken, query, subreddit = 'all') {
 
-
-export default async function searchReddit(accessToken, query) {
 
     const params = new URLSearchParams({
-      q: query, 
-      sort: 'relevance', 
-      limit: 25, 
-      t: 'all', 
-      restrict_sr: true, 
-
+        q: query,
+        sort: 'relevance',
+        limit: '25',
+        t: 'all',
+        restrict_sr: 'true' 
     });
 
-const url = `https://www.reddit.com/r/default/search.rss?${params.toString()}`;
-  const payload = {
-    method: 'GET',
-    headers: {
-      'Authorization': `Bearer ${accessToken}`,
-      'Content-Type': 'application/json',
-    },
-  };
 
-   try {
-    const response = await fetch(url, payload);
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(`Failed to fetch user: ${errorData.error || response.statusText}`);
-    }
+    const url = `https://oauth.reddit.com/r/${encodeURIComponent(subreddit)}/search.json?${params.toString()}`;
     
-    const bodyPost = await response.json();
+    const payload = {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'User-Agent': 'imposti/1.0' 
+        }
+    };
 
-return bodyPost
+    try {
+        const response = await fetch(url, payload);
 
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(`Reddit API error: ${errorData.message || response.statusText}`);
+        }
 
-  } catch (error) {
-    console.error('Error fetching user:', error);
-    throw error;
-  }
+        const bodyPost = await response.json();
+        
+
+        return bodyPost.data?.children?.map(post => post.data) || [];
+
+    } catch (error) {
+        console.error('Error searching Reddit:', error);
+        throw error;
+    }
 }

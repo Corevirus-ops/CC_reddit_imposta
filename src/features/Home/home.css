@@ -59,3 +59,7 @@ object-fit: contain;
 .voteButtons:hover {
     border: 2px solid rgb(65, 65, 65);
 }
+
+.mouseHover:hover {
+cursor: pointer;
+}

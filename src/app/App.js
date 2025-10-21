@@ -3,6 +3,7 @@ import Home from '../pages/home/Home';
 import Settings from '../pages/settings/Settings';
 import TopBar from '../features/topBar/TopBar';
 import CreatePost from '../pages/CreatePost/CreatePost';
+import ResultPage from '../pages/Results/ResultPage';
 import { useEffect, useState } from "react";
     import { useSelector } from 'react-redux';
     import { getUser} from '../features/Auth/userSlice';
@@ -31,6 +32,7 @@ function App() {
   <Route path='/' element={<Home loading={loading}/>} />
   <Route path='post' element={<CreatePost />} /> 
   <Route path="settings" element={<Settings />}/>
+  <Route path="results/:index" element={<ResultPage />}/>
 
 
 </Routes>

@@ -21,7 +21,6 @@ useEffect(() => {
   if (state.isLoggedIn && !gatherPost) {
     getPost(state.accessToken, category)
       .then((data) => {
-        console.log(data)
         setPostData(data);
         localStorage.setItem('postData', data);
         setGatherPost(true);
@@ -31,7 +30,6 @@ useEffect(() => {
         let cache = localStorage.getItem('postData');
         setPostData(cache);
         alert('Trouble Loading Content')
-       // setGatherPost(false);
       });
   } else if (!state.isLoggedIn) {
     setGatherPost(false);
