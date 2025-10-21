@@ -86,6 +86,7 @@ function changeCategory(type) {
                             <HomeContents url={item.data.banner_background_image} alt={item.data.advertiser_category} />
                             <div className='voteButtons'>
                                 <FontAwesomeIcon icon={faArrowUp} />
+                                <p>{item.data.subscribers}</p>
                                 <FontAwesomeIcon icon={faArrowDown} />
 
                             </div>

@@ -30,7 +30,7 @@ const url = `https://www.reddit.com/r/default/search.rss?${params.toString()}`;
     
     const bodyPost = await response.json();
 
-return bodyPost.data.children
+return bodyPost
 
 
   } catch (error) {

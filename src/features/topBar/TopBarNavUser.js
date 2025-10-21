@@ -62,6 +62,11 @@ localStorage.removeItem('userDataName');
   localStorage.removeItem('access_token');
             navigate('/')
   }
+
+function openProfile() {
+    window.open(`https://www.reddit.com/user/${state.userName}`, "_blank");
+}
+
 return (
                     <li className='userIcon'>
                     <button onClick={() => setSubMenu(!subMenu)}><img src={state.isLoggedIn ? state.userIcon : 'freeUser.png'} alt='userLogo'/></button>
@@ -74,7 +79,7 @@ return (
                     (
  
                         <div className='subMenu'>
-                        <button>View Profile</button>
+                        <button onClick={openProfile}>View Profile</button>
                         <p>{state.userName}</p>
                         <button onClick={handleLogout}>Log Out</button>
                         </div>

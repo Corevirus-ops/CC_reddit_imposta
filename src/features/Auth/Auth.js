@@ -97,5 +97,35 @@ async function setUserLoggedIn(accessToken) {
 }
 
 
+export async function getUserInfo(accessToken) {
+  
+
+  const url = 'https://oauth.reddit.com/api/v1/me';
+  const payload = {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+  };
+
+  try {
+    const response = await fetch(url, payload);
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Failed to fetch user: ${errorData.error || response.statusText}`);
+    }
+    
+    const userData = await response.json();
+    return userData;
+
+
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    throw error;
+  }
+}
+
+
 
 

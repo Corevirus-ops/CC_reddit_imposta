@@ -47,5 +47,15 @@ object-fit: contain;
 .voteButtons {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
     margin: 5px;
+    background-color: lightgray;
+    padding: 5px;
+    border-radius: 25%;
+    border: 2px solid gray;
+}
+
+.voteButtons:hover {
+    border: 2px solid rgb(65, 65, 65);
 }

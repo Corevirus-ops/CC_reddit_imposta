@@ -20,6 +20,7 @@ export default function TopBarSearchBar() {
 
     const handler = setTimeout(() => {
       setSearch(inputValue);
+
     }, 500); 
 
   
@@ -30,7 +31,7 @@ export default function TopBarSearchBar() {
 
   useEffect(() => {
     if (search && state.accessToken) {
-        searchReddit(search)
+        searchReddit(state.accessToken, search)
         .then((data) => {
             console.log(data)
         })
