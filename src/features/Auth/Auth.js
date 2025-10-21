@@ -7,7 +7,7 @@ const generateRandomString = (length) => {
   return values.reduce((acc, x) => acc + possible[x % possible.length], "");
 }
 
-        const redirectUri = 'http://192.168.1.196:3000/';
+        const redirectUri = 'https://reddit-imposta.netlify.app/';
 const clientId = 'jmLveRbd0_5HhFr0hfFu0A';
 const scope = 'identity history mysubreddits read save submit vote wikiedit wikiread';
 const authUrl = new URL("https://www.reddit.com/api/v1/authorize")
