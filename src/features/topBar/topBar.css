@@ -12,7 +12,6 @@
     width: 100%; 
 }
 
-
 .PageLogo {
     display: flex;
     flex-direction: row;
@@ -46,7 +45,6 @@
     text-shadow: 1px 1px rgba(0, 0, 0, 0.496);
 }
 
-
 .topNav {
     display: flex;
     align-items: center;
@@ -76,7 +74,7 @@
 }
 
 .userIcon img {
-     width: 10%; 
+    width: 10%; 
     height: auto;
     min-width: 30px;
     max-width: 100px; 
@@ -86,7 +84,7 @@
 .userIcon {
     display: flex;
     flex-wrap: wrap;
-     width: 10%; 
+    width: 10%; 
     height: auto;
     min-width: 30px;
     max-width: 100px; 
@@ -127,13 +125,13 @@
     padding: 5px;
 }
 
-
 .topBarSearchBar {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 10px;
 }
+
 .topBarSearchBar label {
     z-index: 2;
 }
@@ -192,7 +190,7 @@
 
 .resultBox {
     display: flex;
-flex-direction: column;
+    flex-direction: column;
     align-items: center;
     border: 2px solid rgb(112, 112, 112);
     width: 90%;
@@ -203,7 +201,6 @@ flex-direction: column;
     cursor: pointer;
 }
 
-
 .no_results {
     border: 2px solid rgb(255, 69, 0);
     border-radius: 50%;
@@ -212,4 +209,192 @@ flex-direction: column;
     text-shadow: -1px -1px rgb(255, 69, 0);
 }
 
+/* Media Queries for Tablets (769px to 1024px) */
+@media screen and (max-width: 1024px) {
+    .PageHeader {
+        padding: 8px 15px;
+    }
 
+    .PageLogo img {
+        min-width: 25px;
+        max-width: 80px;
+    }
+
+    .PageLogo figcaption {
+        font-size: 14px;
+        margin-left: 8px;
+    }
+
+    .topNav ul {
+        gap: 15px;
+    }
+
+    .topNav li {
+        padding: 4px;
+    }
+
+    .userIcon, .userIcon img {
+        min-width: 25px;
+        max-width: 80px;
+    }
+
+    .topBarSearchBar input {
+        width: 150px;
+        transform: scale(1.2);
+        padding: 6px 10px;
+    }
+
+    .searchResults {
+        width: 70%;
+        max-height: 500px;
+        min-width: 180px;
+    }
+
+    .resultItem {
+        width: 80%;
+        margin: 8px auto;
+    }
+
+    .resultBox {
+        width: 95%;
+        border-width: 1px;
+    }
+
+    .no_results {
+        padding: 8px;
+    }
+}
+
+/* Media Queries for Phones (up to 768px) */
+@media screen and (max-width: 768px) {
+    .PageHeader {
+        padding: 5px;
+        flex-direction: column;
+        gap: 0;
+        align-items: stretch;
+        border-bottom: 1px solid rgb(82, 82, 82);
+    }
+
+    .PageLogo {
+        flex-direction: row;
+        justify-content: center;
+        background-color: #fff;
+        padding: 8px;
+        border: 1px solid rgb(200, 200, 200);
+        border-radius: 5px;
+        margin: 2px 0;
+    }
+
+    .PageLogo img {
+        min-width: 20px;
+        max-width: 50px;
+    }
+
+    .PageLogo figcaption {
+        font-size: 12px;
+        margin-left: 8px;
+        margin-top: 0;
+    }
+
+    .topNav {
+        justify-content: center;
+    }
+
+    .topNav ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0;
+        justify-content: center;
+    }
+
+    .topNav li {
+        flex: 1;
+        padding: 8px;
+        margin: 2px;
+        background-color: #fff;
+        border: 1px solid rgb(200, 200, 200);
+        border-radius: 5px;
+        text-align: center;
+        min-width: 80px;
+    }
+
+    .userIcon, .userIcon img {
+        min-width: 20px;
+        max-width: 50px;
+        width: 100%;
+    }
+
+    .userIcon {
+        padding: 8px;
+        margin: 2px;
+        background-color: #fff;
+        border: 1px solid rgb(200, 200, 200);
+        border-radius: 5px;
+    }
+
+    .userIcon .subMenu {
+        font-size: 0.7rem;
+        right: 2%;
+        border: 1px solid black;
+        border-radius: 5px;
+        width: 120px;
+    }
+
+    .subMenu p {
+        padding: 6px;
+        margin: 0;
+        border-bottom: 1px solid rgb(200, 200, 200);
+        width: 100%;
+        text-align: center;
+    }
+
+    .subMenu p:last-child {
+        border-bottom: none;
+    }
+
+    .topBarSearchBar {
+        margin: 2px;
+        padding: 8px;
+        background-color: #fff;
+        border: 1px solid rgb(200, 200, 200);
+        border-radius: 5px;
+    }
+
+    .topBarSearchBar input {
+        width: 100%;
+        transform: scale(1);
+        padding: 6px 8px;
+        border-radius: 10px;
+        border: 1px solid rgb(255, 69, 0);
+    }
+
+    .searchResults {
+        width: 95%;
+        max-height: 400px;
+        min-width: 0;
+        top: 6rem;
+        border: 1px solid lightgrey;
+    }
+
+    .resultItem {
+        width: 100%;
+        margin: 0;
+        padding: 5px;
+    }
+
+    .resultBox {
+        width: 100%;
+        border: 1px solid rgb(112, 112, 112);
+        padding: 8px;
+        margin: 2px 0;
+        border-radius: 5px;
+    }
+
+    .no_results {
+        padding: 6px;
+        border-radius: 10px;
+        border: 1px solid rgb(255, 69, 0);
+        font-size: 0.9em;
+        text-align: center;
+    }
+}

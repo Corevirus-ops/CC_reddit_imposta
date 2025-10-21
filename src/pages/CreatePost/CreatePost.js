@@ -1,7 +1,7 @@
 export default function CreatePost() {
     return (
         <>
-        <h2>Something else here v2</h2>
+        <h2>This feature is coming</h2>
         </>
     )
 }

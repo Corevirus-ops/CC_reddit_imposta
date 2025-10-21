@@ -1,5 +1,5 @@
 
-import {removeResults, getResults} from '../../features/results/resultsSlice';
+import {getResults} from '../../features/results/resultsSlice';
 import {useSelector} from 'react-redux';
 
 export default function ResultPage() {
